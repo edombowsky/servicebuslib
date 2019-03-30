@@ -7,15 +7,14 @@ package com.github.emd.servicebuslib.servicebus.adapter
 import scala.collection.mutable.ListBuffer
 import scala.collection.JavaConverters._
 
+import com.github.emd.servicebuslib.helper.FileLogger.fileLogger
 import com.github.emd.servicebuslib.helper.StringUtils
 import com.github.emd.servicebuslib.servicebus.EntityInformation
-import com.github.emd.servicebuslib.servicebus.helper.ServiceBusConstants
 import com.microsoft.azure.servicebus.IMessage
 import com.microsoft.azure.servicebus.Message
 import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
 import com.microsoft.azure.servicebus.primitives.ServiceBusException
 import com.microsoft.azure.servicebus.TopicClient
-import com.github.emd.servicebuslib.helper.FileLogger.fileLogger
 
 final case class TopicSender(entityInformation: EntityInformation) extends EntityAdapter {
 
@@ -62,7 +61,6 @@ final case class TopicSender(entityInformation: EntityInformation) extends Entit
         outboundMessage.setMessageId(messageId)
         outboundMessage.setProperties(msgProperties.asJava)
         outboundMessage.setReplyTo(destinationApp)
-        outboundMessage.setLabel(ServiceBusConstants.SendMessageLabel)
         outboundMessage.setContentType("XML")
 
         outboundMessages += outboundMessage

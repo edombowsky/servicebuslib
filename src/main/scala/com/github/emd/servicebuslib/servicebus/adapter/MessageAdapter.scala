@@ -20,8 +20,7 @@ object MessageAdapter {
     scala.collection.mutable.Set(InfoType.IdValues, InfoType.MsgProperties, InfoType.MsgContent)
 
   implicit class RichToString(val x: java.nio.ByteBuffer) extends AnyVal {
-    def byteArrayToString(): String = new String(x.array.takeWhile(_ != 0),
-      "UTF-8")
+    def byteArrayToString(): String = new String(x.array.takeWhile(_ != 0),"UTF-8")
   }
 
   /**
@@ -42,6 +41,10 @@ object MessageAdapter {
    * Puts important information about the message in the map. Information such as its
    * Message ID, Correlation ID, all the way to the Message Content itself based on
    * the specified information types.
+   *
+   * @param message
+   * @param properties
+   * @param info
    */
   @scala.annotation.tailrec
   def addToProperties(
@@ -55,10 +58,8 @@ object MessageAdapter {
 
       info.foreach {
         case InfoType.IdValues =>
-          properties += ("Message ID" -> Option(message.getMessageId).getOrElse(
-            "NULL"))
-          properties += ("Session ID" -> Option(message.getSessionId).getOrElse(
-            "NULL"))
+          properties += ("Message ID" -> Option(message.getMessageId).getOrElse("NULL"))
+          properties += ("Session ID" -> Option(message.getSessionId).getOrElse("NULL"))
           properties += ("Correlation ID" -> Option(
             message.getCorrelationId).getOrElse("NULL"))
         case InfoType.MsgProperties =>
@@ -71,8 +72,7 @@ object MessageAdapter {
           }
         case InfoType.MsgContent =>
           properties += ("Message Content" -> Option(
-            new String(message.getBody)).getOrElse(
-            "NULL"))
+            new String(message.getBody)).getOrElse("NULL"))
         //case InfoType.All =>
         //  properties += ("Message ID" -> Option(message.getMessageIdTextField).getOrElse("NULL"))
         //  properties += ("Session ID" -> Option(message.getSessionIdTextField).getOrElse("NULL"))
