@@ -1,8 +1,9 @@
 import sbt.Keys.scalacOptions
 
 lazy val commonSettings = Seq(
+  name := "ServiceBusLibrary",
   organization := "com.github.emd",
-  version := "0.0.1",
+  version := "0.1-SNAPSHOT",
   scalaVersion := "2.12.8",
   //scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature"),
   scalacOptions in Compile ++= Seq(
@@ -69,7 +70,8 @@ libraryDependencies ++= javaFXModules.map( m => "org.openjfx" % s"javafx-$m" % "
 lazy val root = (project in file("."))
   .settings(
     commonSettings,
-    name := "ServiceBusLibrary",
+
+    publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.m2/repository"))),
 
     // mainClass in assembly := Some("com.abb.servicebuslib.ServiceBusHelper"),
     // assemblyJarName in assembly := "ServiceBusHelper.jar",
