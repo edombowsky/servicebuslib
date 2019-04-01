@@ -7,4 +7,4 @@
     + Sending to Queues
     + Receiving IMessages from Queues
 
-Currenlly I use `sbt publishLocal` to use it. Maybe become more formal once things have been re-factored such that it is better ready for others to use.
+Currently I use `sbt publishLocal` to use it. May become more formal once things have been re-factored such that it is better ready for others to use.
