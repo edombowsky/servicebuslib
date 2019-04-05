@@ -39,33 +39,10 @@ lazy val versions = new {
   val upickle           = "0.7.1"
   val scalafxmlVersion  = "0.4"
   val scalamockVersion  = "4.1.0"
-  val scalafxExtras     = "0.3.0"
-  val scalafxmlCoreSfx8 = "0.4"
-  // TODO: may want to use 8.0.102.R11 because scalafxml depend on it (sbt> evicted)
-  val scalafxVersion    = "11-R16"
-  // https://ymasory.github.io/OrangeExtensions/
-  val orange_extensions = "1.3.0"
   // Disables Microsoft ServiceBus library logging and prevents
   // the "Failed to load class org.slf4j.impl.StaticLoggerBinder" warning
   val sl4j_nop          = "1.7.25"
 }
-
-
-// Determine OS version of JavaFX binaries to use Java 11
-// Reference: https://groups.google.com/forum/#!topic/scalafx-users/DmV7dx83ogc
-lazy val osName = System.getProperty("os.name") match {
-  case n if n.startsWith("Linux")   => "linux"
-  case n if n.startsWith("Mac")     => "mac"
-  case n if n.startsWith("Windows") => "win"
-  case _ => throw new Exception("Unknown platform!")
-}
-
-lazy val javaFXModules = Seq( "base", "controls", "fxml", "graphics", "media", "swing", "web" )
-
-// Add dependency on ScalaFX library
-libraryDependencies += "org.scalafx" %% "scalafx" % versions.scalafxVersion
-
-libraryDependencies ++= javaFXModules.map( m => "org.openjfx" % s"javafx-$m" % "11" classifier osName )
 
 lazy val root = (project in file("."))
   .settings(
@@ -73,28 +50,14 @@ lazy val root = (project in file("."))
 
     publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.m2/repository"))),
 
-    // mainClass in assembly := Some("com.abb.servicebuslib.ServiceBusHelper"),
-    // assemblyJarName in assembly := "ServiceBusHelper.jar",
-
-    // set the main class for packaging the main jar
-    // 'run' will still auto-detect and prompt
-    // change Compile to Test to set it for the test jar
-    // mainClass in (Compile, packageBin) := Some("com.abb.servicebuslib.ServiceBusHelper"),
-
-    // set the main class for the main 'run' task
-    // change Compile to Test to set it for 'test:run'
-    // mainClass in (Compile, run) := Some("com.abb.servicebuslib.ServiceBusHelper"),
-
     resolvers ++= Seq(
       "wfm_public"  at "http://usatl-s-ssvm022.ventyx.us.abb.com:8081/nexus/content/groups/public/",
-      "Bintray sbt plugin releases" at "http://dl.bintray.com/sbt/sbt-plugin-releases/",
-      "Bintray JMetro" at "https://dl.bintray.com/dukke/maven/"
+      "Bintray sbt plugin releases" at "http://dl.bintray.com/sbt/sbt-plugin-releases/"
     ),
 
     addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
 
     libraryDependencies ++= Seq(
-      "com.yuvimasory" % "orange-extensions" % versions.orange_extensions,
       "com.microsoft.azure" % "azure-servicebus" % versions.azure_servicebus,
       "com.beachape" %% "enumeratum" % versions.enumeratum,
       "com.lihaoyi" %% "pprint" % versions.pprint,
@@ -102,12 +65,9 @@ lazy val root = (project in file("."))
       "org.scalactic" %% "scalactic" % versions.scalactic % Test,
       "org.mockito" % "mockito-core" % versions.mockito_core % Test,
       "org.scalamock" %% "scalamock" % versions.scalamockVersion % Test,
-      //"com.jsuereth" %% "scala-arm" % versions.scala_arm,
       "com.lihaoyi" %% "upickle" % versions.upickle,
       "com.github.pureconfig" %% "pureconfig" % versions.pureconfig,
       "com.outr" %% "scribe" % versions.scribe,
       "org.scala-lang.modules" %% "scala-xml" % versions.scala_xml,
-      "org.slf4j" % "slf4j-nop" % versions.sl4j_nop,
-      "org.scalafx" %% "scalafxml-core-sfx8" % versions.scalafxmlCoreSfx8,
-      "org.scalafx" %% "scalafx-extras" % versions.scalafxExtras)
+      "org.slf4j" % "slf4j-nop" % versions.sl4j_nop)
   )
