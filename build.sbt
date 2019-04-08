@@ -26,22 +26,22 @@ lazy val commonSettings = Seq(
   )
 
 lazy val versions = new {
-  val scalatest         = "3.0.5"
-  val scalactic         = "3.0.5"
-  val mockito_core      = "2.24.0"
+  val scalatest         = "3.0.7"
+  val scalactic         = "3.0.7"
+  val mockito_core      = "2.26.0"
   val enumeratum        = "1.5.13"
   val azure_servicebus  = "2.0.0"
   //val scala_arm         = "2.0"
-  val pprint            = "0.5.3"
-  val scala_xml         = "1.1.1"
+  val pprint            = "0.5.4"
+  val scala_xml         = "1.2.0"
   val pureconfig        = "0.10.2"
-  val scribe            = "2.7.2"
-  val upickle           = "0.7.1"
+  val scribe            = "2.7.3"
+  val upickle           = "0.7.4"
   val scalafxmlVersion  = "0.4"
   val scalamockVersion  = "4.1.0"
   // Disables Microsoft ServiceBus library logging and prevents
   // the "Failed to load class org.slf4j.impl.StaticLoggerBinder" warning
-  val sl4j_nop          = "1.7.25"
+  val sl4j_nop          = "1.7.26"
 }
 
 lazy val root = (project in file("."))
