@@ -71,7 +71,7 @@ object MessageAdapter {
             properties += ("Message Properties" -> ppp)
           }
         case InfoType.MsgContent =>
-          val msg: Array[Byte] = message.getMessageBody.getBinaryData.asScala.toList(0)
+          val msg: Array[Byte] = message.getMessageBody.getBinaryData.asScala.toList.head
           properties += ("Message Content" -> Option(new String(msg)).getOrElse("NULL"))
         //case InfoType.All =>
         //  properties += ("Message ID" -> Option(message.getMessageIdTextField).getOrElse("NULL"))
