@@ -102,15 +102,15 @@ final case class Receiver(entityInformation: EntityInformation) extends EntityAd
   /**
    * The role of this subscription receiver.
    *
-   * @return the [[Role]] of this subscription receiver
+   * @return the [[com.github.emd.servicebuslib.servicebus.helper.Role]] of this subscription receiver
    */
   def role: Role = entityInformation.role
 
   /**
    * This Service Bus Entity does not support sending messages.
    */
-  @throws[InterruptedException]
-  @throws[ServiceBusException]
+  @throws(classOf[InterruptedException])
+  @throws(classOf[ServiceBusException])
   def doSend(messages: List[IMessage]): Unit = {
     throw new UnsupportedOperationException("This entity does not support sending messages")
   }
@@ -121,7 +121,7 @@ final case class Receiver(entityInformation: EntityInformation) extends EntityAd
    *
    * @param messageCount the number of messages to read
    *
-   * @return batch of [[IMessage]] peeked
+   * @return batch of IMessage's peeked
    */
   @throws[InterruptedException]("if the current thread was interrupted while waiting")
   @throws[ServiceBusException]("if peek failed")
@@ -173,7 +173,7 @@ final case class Receiver(entityInformation: EntityInformation) extends EntityAd
        | role              : ${entityInformation.role},
        | mode              : ${ReceiveMode.PEEKLOCK}""".stripMargin
 
-  @throws[ServiceBusException]
+  @throws(classOf[ServiceBusException])
   override def close(): Unit = {
 
     entityInformation.subscriptionName match {
@@ -189,7 +189,7 @@ final case class Receiver(entityInformation: EntityInformation) extends EntityAd
     ()
   }
 
-  //@throws[RuntimeException]
+  //@throws(classOf[RuntimeException])
   //def stopReceiver(): Unit = {
   //  try {
   //    receiver.close()

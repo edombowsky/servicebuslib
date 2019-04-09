@@ -80,9 +80,9 @@ final case class QueueSender(entityInformation: EntityInformation) extends Entit
    *
    * @param messages the messages to send
    *
-   * @throws InterruptedException
-   * @throws ServiceBusException
    */
+  @throws(classOf[InterruptedException])
+  @throws(classOf[com.microsoft.azure.servicebus.primitives.ServiceBusException])
   override def doSend(messages: List[IMessage]): Unit = {
     messages match {
       case Nil =>
@@ -103,13 +103,13 @@ final case class QueueSender(entityInformation: EntityInformation) extends Entit
    *
    * @param messageCount the number of messages to read
    */
-  @throws[InterruptedException]
-  @throws[ServiceBusException]
+  @throws(classOf[InterruptedException])
+  @throws(classOf[ServiceBusException])
   override def doRead(messageCount: Int): List[IMessage] = {
     throw new UnsupportedOperationException("This entity does not support receiving messages")
   }
 
-  @throws[ServiceBusException]
+  @throws(classOf[ServiceBusException])
   override def close(): Unit = {
     client.close()
   }

@@ -13,8 +13,8 @@ import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
 /**
  * Captures information that defines an entity
  *
- * @param role             the roles this entity will play [[Role]]
- * @param entityType       the entityType type of this entity [[EntityType]]
+ * @param role             the roles this entity will play [[com.github.emd.servicebuslib.servicebus.helper.Role]]
+ * @param entityType       the entityType type of this entity [[com.github.emd.servicebuslib.servicebus.helper.EntityType]]
  * @param keyName          name of the key for this entity
  * @param keyValue         the entities secret key
  * @param entity           the entities path

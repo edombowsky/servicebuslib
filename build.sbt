@@ -5,7 +5,6 @@ lazy val commonSettings = Seq(
   organization := "com.github.emd",
   version := "0.1-SNAPSHOT",
   scalaVersion := "2.12.8",
-  //scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature"),
   scalacOptions in Compile ++= Seq(
     "-encoding", "UTF-8",
     "-target:jvm-1.8",
@@ -51,7 +50,7 @@ lazy val root = (project in file("."))
     publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.m2/repository"))),
 
     resolvers ++= Seq(
-      "wfm_public"  at "http://usatl-s-ssvm022.ventyx.us.abb.com:8081/nexus/content/groups/public/",
+      // "wfm_public"  at "http://usatl-s-ssvm022.ventyx.us.abb.com:8081/nexus/content/groups/public/",
       "Bintray sbt plugin releases" at "http://dl.bintray.com/sbt/sbt-plugin-releases/"
     ),
 

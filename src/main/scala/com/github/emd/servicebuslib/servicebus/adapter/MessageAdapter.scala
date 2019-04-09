@@ -42,8 +42,8 @@ object MessageAdapter {
    * Message ID, Correlation ID, all the way to the Message Content itself based on
    * the specified information types.
    *
-   * @param message
-   * @param properties
+   * @param message      message to be processed
+   * @param properties   map to accumulate message properties
    * @param info
    */
   @scala.annotation.tailrec
@@ -127,7 +127,7 @@ class MessageAdapter(val message: Option[IMessage]) {
     MessageAdapter.toStr(message.get, level)
 
   /**
-   * @see [[MessageAdapter#toString(IMessage, EnumSet)]]
+   * @see [[com.github.emd.servicebuslib.servicebus.adapter.MessageAdapter.toString]]
    */
   override def toString: String =
     toString(scala.collection.mutable.Set(MessageAdapter.InfoType.All))

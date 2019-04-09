@@ -59,12 +59,10 @@ trait EntityAdapter {
    *                      any other parameters
    * @param sessionId     the session ID of the messages
    * @param correlationId the correlation ID of the messages
-   *
-   * @throws TimeoutException if the sending operation exceeds [[ServiceBusConstants.MaxTransientExceptionAttempts]] seconds
    */
-  @throws[InterruptedException]
-  @throws[ServiceBusException]
-  @throws[TimeoutException]
+  @throws(classOf[InterruptedException])
+  @throws(classOf[ServiceBusException])
+  @throws[TimeoutException]("if the sending operation exceeds [[com.github.emd.servicebuslib.servicebus.helper.ServiceBusConstants.MaxTransientExceptionAttempts]] seconds")
   def send(messages: scala.collection.immutable.List[IMessage],
            sessionId: String,
            correlationId: String): Unit = {
@@ -128,13 +126,13 @@ trait EntityAdapter {
   }
 
   /**
-   * Called when [[send(List, String, String]] is fired. Override this method
+   * Called when {{send(List, String, String)}} is fired. Override this method
    * to implement the appropriate message sending functionality.
    *
    * @param messages the messages to send
    */
-  @throws[InterruptedException]
-  @throws[ServiceBusException]
+  @throws(classOf[InterruptedException])
+  @throws(classOf[ServiceBusException])
   def doSend(messages: scala.collection.immutable.List[IMessage]): Unit
 
   /**
@@ -144,9 +142,9 @@ trait EntityAdapter {
    *
    * @return List of messages read
    */
-  @throws[InterruptedException]
-  @throws[ServiceBusException]
-  @throws[TimeoutException]
+  @throws(classOf[InterruptedException])
+  @throws(classOf[ServiceBusException])
+  @throws(classOf[TimeoutException])
   def read(numberOfMessages: Int): List[IMessage] = {
     if (numberOfMessages < 1) {
       fileLogger.info("Didn't request any messages to be read!")
@@ -162,20 +160,20 @@ trait EntityAdapter {
   }
 
   /**
-   * Called when [[read(Int]] is fired. Override this method
+   * Called when {{read(Int)}} is fired. Override this method
    * to implement the appropriate message reading functionality.
    *
    * @param messageCount the number of messages to read
    *
    * @return List of messages read
    */
-  @throws[InterruptedException]
-  @throws[ServiceBusException]
+  @throws(classOf[InterruptedException])
+  @throws(classOf[ServiceBusException])
   def doRead(messageCount: Int): List[IMessage]
 
   /**
    * Closes the connection to the Service Bus entity
    */
-  @throws[ServiceBusException]
+  @throws(classOf[ServiceBusException])
   def close(): Unit
 }
