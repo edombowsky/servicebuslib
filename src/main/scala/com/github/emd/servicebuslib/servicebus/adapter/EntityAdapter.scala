@@ -126,7 +126,7 @@ trait EntityAdapter {
   }
 
   /**
-   * Called when {{send(List, String, String)}} is fired. Override this method
+   * Called when {{{send(List, String, String)}}} is fired. Override this method
    * to implement the appropriate message sending functionality.
    *
    * @param messages the messages to send
@@ -160,7 +160,7 @@ trait EntityAdapter {
   }
 
   /**
-   * Called when {{read(Int)}} is fired. Override this method
+   * Called when {{{read(Int)}}} is fired. Override this method
    * to implement the appropriate message reading functionality.
    *
    * @param messageCount the number of messages to read
