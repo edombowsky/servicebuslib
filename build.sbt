@@ -33,11 +33,11 @@ lazy val versions = new {
   //val scala_arm         = "2.0"
   val pprint            = "0.5.4"
   val scala_xml         = "1.2.0"
-  val pureconfig        = "0.10.2"
-  val scribe            = "2.7.3"
+  val pureconfig        = "0.11.0"
+  val scribe            = "2.7.6"
   val upickle           = "0.7.4"
   val scalafxmlVersion  = "0.4"
-  val scalamockVersion  = "4.1.0"
+  val scalamockVersion  = "4.2.0"
   // Disables Microsoft ServiceBus library logging and prevents
   // the "Failed to load class org.slf4j.impl.StaticLoggerBinder" warning
   val sl4j_nop          = "1.7.26"
