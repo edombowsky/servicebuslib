@@ -30,13 +30,13 @@ lazy val versions = new {
   val mockito_core      = "3.0.0"
   val enumeratum        = "1.5.13"
   val azure_servicebus  = "2.0.0"
-  val pprint            = "0.5.4"
+  val pprint            = "0.5.5"
   val scala_xml         = "1.2.0"
   val scribe            = "2.7.9"
-  val scalamockVersion  = "4.1.0"
+  val scalamockVersion  = "4.3.0"
   // Disables Microsoft ServiceBus library logging and prevents
   // the "Failed to load class org.slf4j.impl.StaticLoggerBinder" warning
-  val sl4j_nop          = "1.7.26"
+  val sl4j_nop          = "1.7.27"
 }
 
 lazy val root = (project in file("."))
