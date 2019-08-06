@@ -25,19 +25,15 @@ lazy val commonSettings = Seq(
   )
 
 lazy val versions = new {
-  val scalatest         = "3.0.7"
-  val scalactic         = "3.0.7"
-  val mockito_core      = "2.27.0"
+  val scalatest         = "3.0.8"
+  val scalactic         = "3.0.8"
+  val mockito_core      = "3.0.0"
   val enumeratum        = "1.5.13"
   val azure_servicebus  = "2.0.0"
-  //val scala_arm         = "2.0"
   val pprint            = "0.5.4"
   val scala_xml         = "1.2.0"
-  val pureconfig        = "0.11.0"
-  val scribe            = "2.7.6"
-  val upickle           = "0.7.4"
-  val scalafxmlVersion  = "0.4"
-  val scalamockVersion  = "4.2.0"
+  val scribe            = "2.7.9"
+  val scalamockVersion  = "4.1.0"
   // Disables Microsoft ServiceBus library logging and prevents
   // the "Failed to load class org.slf4j.impl.StaticLoggerBinder" warning
   val sl4j_nop          = "1.7.26"
@@ -54,8 +50,6 @@ lazy val root = (project in file("."))
       "Bintray sbt plugin releases" at "http://dl.bintray.com/sbt/sbt-plugin-releases/"
     ),
 
-    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
-
     libraryDependencies ++= Seq(
       "com.microsoft.azure" % "azure-servicebus" % versions.azure_servicebus,
       "com.beachape" %% "enumeratum" % versions.enumeratum,
@@ -64,8 +58,6 @@ lazy val root = (project in file("."))
       "org.scalactic" %% "scalactic" % versions.scalactic % Test,
       "org.mockito" % "mockito-core" % versions.mockito_core % Test,
       "org.scalamock" %% "scalamock" % versions.scalamockVersion % Test,
-      "com.lihaoyi" %% "upickle" % versions.upickle,
-      "com.github.pureconfig" %% "pureconfig" % versions.pureconfig,
       "com.outr" %% "scribe" % versions.scribe,
       "org.scala-lang.modules" %% "scala-xml" % versions.scala_xml,
       "org.slf4j" % "slf4j-nop" % versions.sl4j_nop)
